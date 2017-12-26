@@ -1,0 +1,3 @@
+sqlalchemy>=1.1
+flask_restful
+psycopg2
