@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# coding=UTF-8
 
 import json
 from flask_restful import Resource, reqparse
