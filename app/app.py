@@ -15,4 +15,5 @@ if __name__ == '__main__':
     api.add_resource(ListarOcorrencias, '/ocorrencias', endpoint = 'ocorrencias')
     api.add_resource(Ocorrencia, '/ocorrencias/<int:id_ocorrencia>', endpoint = 'ocorrencia')
 
-    app.run(debug = True)
+    #app.run(debug = True)
+    app.run(host='0.0.0.0', port=5000, debug=True)

@@ -118,6 +118,18 @@ class Ocorrencia(Resource):
         return json.dumps(get_ocorrencia_as_dict(id_ocorrencia), cls=CustomDatetimeSerializer)
 
 class ListarOcorrencias(Resource):
+    def __init__(self):
+        self.result = None
+
+    def check_database(self):
+        try:
+            session = database.session
+            session.execute('SELECT 1')
+            return True
+        except:
+            session.close()
+            return False
+
     def get(self):
 
         parser = reqparse.RequestParser()
@@ -135,6 +147,9 @@ class ListarOcorrencias(Resource):
         ocorrencias_q = ocorrencias_q.limit(database.results_per_page)
         ocorrencias_q = ocorrencias_q.offset(page)
         results = []
-        for ocorrencia in ocorrencias_q:
-            results.append(get_ocorrencia_as_dict(ocorrencia.id_ocorrencia))
+
+        if self.check_database():
+            for ocorrencia in ocorrencias_q:
+                results.append(get_ocorrencia_as_dict(ocorrencia.id_ocorrencia))
+
         return json.dumps(results, cls=CustomDatetimeSerializer)

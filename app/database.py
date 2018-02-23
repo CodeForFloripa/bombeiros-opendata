@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# coding=UTF-8
 
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import sessionmaker
